@@ -5,13 +5,14 @@ import com.badlogic.gdx.math.Vector2;
 public class God {
 	private Vector2 position;
 	private int angle=0;
-	private float speed=0.1f;
+	private float speed=0.07f;
 	private int radius = 300;
 	private int centerx = 500;
 	private int centery = 375;
 	public static final int DIRECTION_CLOCKWISE = 1;
     public static final int DIRECTION_ANTICLOCKWISE = 2;
     public static final int DIRECTION_STILL = 0;
+    
 	 
     public God(float x, float y) {
         position = new Vector2(x,y);

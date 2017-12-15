@@ -12,7 +12,6 @@ public class GameScreen extends ScreenAdapter {
 	private DodgeLikeGodGame dodgeLikeGodGame;
 	private Texture godImg;
 	private God god;
-	 
     public GameScreen(DodgeLikeGodGame dodgeLikeGodGame) {
         this.dodgeLikeGodGame = dodgeLikeGodGame;
         godImg = new Texture("pacman.png");
