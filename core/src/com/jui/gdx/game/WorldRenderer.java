@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.Vector2;
 public class WorldRenderer {
 	private DodgeLikeGodGame dodgeLikeGodGame;
 	private World world;
-	private God god;
 	private Texture godImg;
 	private SpriteBatch batch;
 
@@ -23,7 +22,7 @@ public class WorldRenderer {
 	public void render(float delta) {
 		SpriteBatch batch = dodgeLikeGodGame.batch;
 		batch.begin();
-		Vector2 pos = god.getPosition();
+		Vector2 pos = world.getGod().getPosition();
 		batch.draw(godImg, pos.x,750-pos.y);
 		batch.end();
 	}

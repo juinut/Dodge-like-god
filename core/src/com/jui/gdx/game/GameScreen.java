@@ -9,10 +9,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 public class GameScreen extends ScreenAdapter {
-	private DodgeLikeGodGame dodgeLikeGodGame;
-	private God god;
 	private WorldRenderer worldRenderer;
 	private World world;
+	private DodgeLikeGodGame dodgeLikeGodGame;
+	
     public GameScreen(DodgeLikeGodGame dodgeLikeGodGame) {
         this.dodgeLikeGodGame = dodgeLikeGodGame;
         new Texture("pacman.png");
@@ -31,10 +31,10 @@ public class GameScreen extends ScreenAdapter {
     }
     private void update(float delta) {
     		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-    			god.move(God.DIRECTION_ANTICLOCKWISE);
+    			world.getGod().move(God.DIRECTION_ANTICLOCKWISE);
         }
     		else if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-        		god.move(God.DIRECTION_CLOCKWISE);
+        		world.getGod().move(God.DIRECTION_CLOCKWISE);
         }
     }
 }
