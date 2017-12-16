@@ -10,23 +10,24 @@ import com.badlogic.gdx.math.Vector2;
 
 public class GameScreen extends ScreenAdapter {
 	private DodgeLikeGodGame dodgeLikeGodGame;
-	private Texture godImg;
 	private God god;
+	private WorldRenderer worldRenderer;
+	private World world;
     public GameScreen(DodgeLikeGodGame dodgeLikeGodGame) {
         this.dodgeLikeGodGame = dodgeLikeGodGame;
-        godImg = new Texture("pacman.png");
-        god = new God(500,675);
+        new Texture("pacman.png");
+        world = new World(dodgeLikeGodGame);
+        worldRenderer = new WorldRenderer(dodgeLikeGodGame,world);
+        
     }
     @Override
     public void render(float delta) {
-    		Gdx.gl.glClearColor(0, 0, 0, 1);
-    		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    		SpriteBatch batch = dodgeLikeGodGame.batch;
-    		update(delta);
-        batch.begin();
-        Vector2 pos = god.getPosition();
-        batch.draw(godImg, pos.x,750-pos.y);
-        batch.end();
+        update(delta);
+        
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+ 
+        worldRenderer.render(delta);
     }
     private void update(float delta) {
     		if(Gdx.input.isKeyPressed(Keys.LEFT)) {

@@ -2,15 +2,12 @@ package com.jui.gdx.game;
 
 public class World {
 	private God god;
-    private DodgeLikeGodGame dodgeLikeGodGame;
  
-    World(DodgeLikeGodGame dodgeLikeGodGame) {
-        this.dodgeLikeGodGame = dodgeLikeGodGame;
- 
-        god = new God(500,675);
+    public World(DodgeLikeGodGame dodgeLikeGodGame) {
+        this.god = new God(500,675);
     }
  
-    God getGod() {
+    public God getGod() {
         return god;
     }
 }
