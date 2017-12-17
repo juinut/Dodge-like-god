@@ -8,6 +8,7 @@ public class WorldRenderer {
 	private DodgeLikeGodGame dodgeLikeGodGame;
 	private World world;
 	private Texture godImg;
+	private Texture satanImg;
 	private SpriteBatch batch;
 
 	public WorldRenderer(DodgeLikeGodGame dodgeLikeGodGame, World world) {
@@ -17,13 +18,16 @@ public class WorldRenderer {
         this.world = world;
  
         godImg = new Texture("pacman.png");
+        satanImg = new Texture("pacman.png");
     }
 
 	public void render(float delta) {
 		SpriteBatch batch = dodgeLikeGodGame.batch;
 		batch.begin();
-		Vector2 pos = world.getGod().getPosition();
-		batch.draw(godImg, pos.x,750-pos.y);
+		Vector2 posgod = world.getGod().getPosition();
+		Vector2 possatan = world.getSatan().getPosition();
+		batch.draw(godImg, posgod.x,DodgeLikeGodGame.HEIGHT-posgod.y);
+		batch.draw(satanImg, possatan.x,DodgeLikeGodGame.HEIGHT-possatan.y);
 		batch.end();
 	}
 }

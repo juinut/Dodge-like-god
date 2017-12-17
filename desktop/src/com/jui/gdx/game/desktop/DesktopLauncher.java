@@ -7,8 +7,8 @@ import com.jui.gdx.game.DodgeLikeGodGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = 1000;
-        config.height = 750;
+		config.width = DodgeLikeGodGame.WIDTH;
+        config.height = DodgeLikeGodGame.HEIGHT;
 		new LwjglApplication(new DodgeLikeGodGame(), config);
 	}
 

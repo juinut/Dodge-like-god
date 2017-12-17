@@ -11,11 +11,9 @@ import com.badlogic.gdx.math.Vector2;
 public class GameScreen extends ScreenAdapter {
 	private WorldRenderer worldRenderer;
 	private World world;
-	private DodgeLikeGodGame dodgeLikeGodGame;
+	
 	
     public GameScreen(DodgeLikeGodGame dodgeLikeGodGame) {
-        this.dodgeLikeGodGame = dodgeLikeGodGame;
-        new Texture("pacman.png");
         world = new World(dodgeLikeGodGame);
         worldRenderer = new WorldRenderer(dodgeLikeGodGame,world);
         
@@ -29,6 +27,20 @@ public class GameScreen extends ScreenAdapter {
  
         worldRenderer.render(delta);
     }
+    public float abs(float n) {
+    		if(n<0) {
+    			return (n*(-1));
+    		}
+    		else
+    			return n;
+    }
+    public boolean isDead() {
+    		if(abs(world.getSatan().getPosition().x-world.getGod().getPosition().x) <=30 && abs(world.getSatan().getPosition().y -world.getGod().getPosition().y)<=30) {
+    			return true;
+    		}
+    		else
+    			return false;
+    }
     private void update(float delta) {
     		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
     			world.getGod().move(God.DIRECTION_ANTICLOCKWISE);
@@ -36,5 +48,24 @@ public class GameScreen extends ScreenAdapter {
     		else if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
         		world.getGod().move(God.DIRECTION_CLOCKWISE);
         }
+    		if(world.getSatan().getPosition().x >= DodgeLikeGodGame.WIDTH || world.getSatan().getPosition().y >= DodgeLikeGodGame.HEIGHT) {
+    			world.getSatan().getPosition().x = DodgeLikeGodGame.WIDTH/2;
+    			world.getSatan().getPosition().y = DodgeLikeGodGame.HEIGHT/2;
+    		}
+    		if(!isDead()) {
+    			world.getSatan().move();
+    			System.out.println("xs"+world.getSatan().getPosition().x);
+    			System.out.println("xg"+world.getGod().getPosition().x);
+    			System.out.println("ys"+world.getSatan().getPosition().y);
+    			System.out.println("yg"+world.getGod().getPosition().y);
+    		}
+    		if(isDead())
+    		{
+    			System.out.println("dead");
+    			System.out.println("xs"+world.getSatan().getPosition().x);
+    			System.out.println("xg"+world.getGod().getPosition().x);
+    			System.out.println("ys"+world.getSatan().getPosition().y);
+    			System.out.println("yg"+world.getGod().getPosition().y);
+    		}
     }
 }

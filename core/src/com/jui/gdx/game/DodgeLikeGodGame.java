@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class DodgeLikeGodGame extends Game {
+	public static final int HEIGHT = 750;
+    public static final int WIDTH = 1000;
 	public SpriteBatch batch;
 	Texture img;
 	

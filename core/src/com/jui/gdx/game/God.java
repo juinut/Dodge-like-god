@@ -6,7 +6,7 @@ public class God {
 	private Vector2 position;
 	private int angle=0;
 	private float speed=0.07f;
-	private int radius = 300;
+	private int radius = 325;
 	private int centerx = 500;
 	private int centery = 375;
 	public static final int DIRECTION_CLOCKWISE = 1;
