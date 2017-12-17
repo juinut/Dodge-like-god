@@ -64,6 +64,9 @@ public class GameScreen extends ScreenAdapter {
     		else if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
         		world.getGod().move(God.DIRECTION_CLOCKWISE);
         }
+    		if(Gdx.input.isKeyPressed(Keys.A)) {
+    			world.score = 0;
+        }
     		if((world.getSatan().getPosition().x >= DodgeLikeGodGame.WIDTH || world.getSatan().getPosition().y >= DodgeLikeGodGame.HEIGHT || world.getSatan().getPosition().x <= 0 || world.getSatan().getPosition().y <= 0) && worldRenderer.satanMove) {
     			world.getSatan().getPosition().x = DodgeLikeGodGame.WIDTH/2;
     			world.getSatan().getPosition().y = DodgeLikeGodGame.HEIGHT/2;
@@ -123,6 +126,9 @@ public class GameScreen extends ScreenAdapter {
     			else if(worldRenderer.goodThingMove) {
     				world.getGoodThing().move();
     			}
+    		}
+    		if(world.bestScore<=world.score) {
+    			world.bestScore = world.score;
     		}
     }
 }

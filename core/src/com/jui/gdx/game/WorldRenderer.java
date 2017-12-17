@@ -77,6 +77,9 @@ public class WorldRenderer {
 		font.draw(batch, "" +randomDNumber, 525, 675);
 		font.draw(batch, "Score: " + world.getScore(), 800, 700);
 		font.draw(batch, "Your best score: " + world.getBestScore(), 800, 680);
+		if(world.score<0) {
+			font.draw(batch, "Press A to play again!: ", 500, 650);
+		}
 		batch.end();
 	}
 }
