@@ -11,12 +11,12 @@ import com.badlogic.gdx.math.Vector2;
 public class GameScreen extends ScreenAdapter {
 	private WorldRenderer worldRenderer;
 	private World world;
+	public boolean gameover;
 	
 	
     public GameScreen(DodgeLikeGodGame dodgeLikeGodGame) {
         world = new World(dodgeLikeGodGame);
         worldRenderer = new WorldRenderer(dodgeLikeGodGame,world);
-        
     }
     @Override
     public void render(float delta) {
@@ -35,7 +35,8 @@ public class GameScreen extends ScreenAdapter {
     			return n;
     }
     public boolean isDead() {
-    		if(abs(world.getSatan().getPosition().x-world.getGod().getPosition().x) <=30 && abs(world.getSatan().getPosition().y -world.getGod().getPosition().y)<=30) {
+    		if(abs(world.getSatan().getPosition().x-world.getGod().getPosition().x) <=30 && abs(world.getSatan().getPosition().y -world.getGod().getPosition().y)<=30 || abs(world.getGoodThing().getPosition().x-world.getGod().getPosition().x) <=30 && abs(world.getGoodThing().getPosition().y -world.getGod().getPosition().y)<=30 ) {
+    			gameover = true;
     			return true;
     		}
     		else
@@ -48,24 +49,33 @@ public class GameScreen extends ScreenAdapter {
     		else if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
         		world.getGod().move(God.DIRECTION_CLOCKWISE);
         }
-    		if(world.getSatan().getPosition().x >= DodgeLikeGodGame.WIDTH || world.getSatan().getPosition().y >= DodgeLikeGodGame.HEIGHT) {
+    		if((world.getSatan().getPosition().x >= DodgeLikeGodGame.WIDTH || world.getSatan().getPosition().y >= DodgeLikeGodGame.HEIGHT || world.getSatan().getPosition().x <= 0 || world.getSatan().getPosition().y <= 0) && worldRenderer.satanMove) {
     			world.getSatan().getPosition().x = DodgeLikeGodGame.WIDTH/2;
     			world.getSatan().getPosition().y = DodgeLikeGodGame.HEIGHT/2;
+    			world.getSatan().countForSatanSpeed = 1;
+    			worldRenderer.countForCenter = 1;
+    			worldRenderer.satanMove = false;
     		}
-    		if(!isDead()) {
-    			world.getSatan().move();
-    			System.out.println("xs"+world.getSatan().getPosition().x);
-    			System.out.println("xg"+world.getGod().getPosition().x);
-    			System.out.println("ys"+world.getSatan().getPosition().y);
-    			System.out.println("yg"+world.getGod().getPosition().y);
+    		if((world.getGoodThing().getPosition().x >= DodgeLikeGodGame.WIDTH || world.getGoodThing().getPosition().y >= DodgeLikeGodGame.HEIGHT || world.getGoodThing().getPosition().x <= 0 || world.getGoodThing().getPosition().y <= 0) && worldRenderer.goodThingMove) {
+    			world.getGoodThing().getPosition().x = DodgeLikeGodGame.WIDTH/2;
+    			world.getGoodThing().getPosition().y = DodgeLikeGodGame.HEIGHT/2;
+    			world.getGoodThing().countForGoodSpeed = 1;
+    			worldRenderer.countForCenter = 1;
+    			worldRenderer.goodThingMove = false;
     		}
-    		if(isDead())
-    		{
-    			System.out.println("dead");
-    			System.out.println("xs"+world.getSatan().getPosition().x);
-    			System.out.println("xg"+world.getGod().getPosition().x);
-    			System.out.println("ys"+world.getSatan().getPosition().y);
-    			System.out.println("yg"+world.getGod().getPosition().y);
+    		if(!isDead() && !gameover) {
+    			if(worldRenderer.satanMove) {
+    				world.getSatan().move();
+    			}
+    			else if(worldRenderer.goodThingMove) {
+    				world.getGoodThing().move();
+    			}
+    		}
+    		else {
+    			world.getSatan().getPosition().x = DodgeLikeGodGame.WIDTH/2;
+    			world.getSatan().getPosition().y = DodgeLikeGodGame.HEIGHT/2;
+    			world.getGoodThing().getPosition().x = DodgeLikeGodGame.WIDTH/2;
+    			world.getGoodThing().getPosition().y = DodgeLikeGodGame.HEIGHT/2;
     		}
     }
 }
