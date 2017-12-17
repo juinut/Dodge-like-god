@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 public class God {
 	private Vector2 position;
 	private int angle=0;
-	private float speed=0.1f;
+	private float speed=0.09f;
 	private int radius = 325;
 	private int centerx = 500;
 	private int centery = 375;

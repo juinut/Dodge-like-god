@@ -12,8 +12,8 @@ public class WorldRenderer {
 	private World world;
 	private Texture godImg;
 	private Texture satanImg;
-	private Texture blackholeImg;
-	private Texture holyImg;
+	private Texture badImg;
+	private Texture goodImg;
 	private Texture goodThingImg;
 	private Texture background;
 	private SpriteBatch batch;
@@ -35,12 +35,12 @@ public class WorldRenderer {
         this.world = world;
         background = new Texture("bg.jpg");
         
-        	blackholeImg = new Texture("wall.png");
-        holyImg = new Texture("dot.png");
+        	badImg = new Texture("bEarth.png");
+        goodImg = new Texture("goodEarth.png");
         
-        godImg = new Texture("pacman.png");
-        satanImg = new Texture("wall.png");
-        goodThingImg = new Texture("pacman.png");
+        godImg = new Texture("moon.png");
+        satanImg = new Texture("what.png");
+        goodThingImg = new Texture("what.png");
         
         font = new BitmapFont();
     }
@@ -59,11 +59,11 @@ public class WorldRenderer {
 			countForCenter+=1;
 		}
 		if(randomCenter%2==0) {
-			batch.draw(blackholeImg, DodgeLikeGodGame.WIDTH/2,DodgeLikeGodGame.HEIGHT/2);
+			batch.draw(badImg, DodgeLikeGodGame.WIDTH/2,DodgeLikeGodGame.HEIGHT/2);
 			satanMove = true;
 		}
 		else {
-			batch.draw(holyImg, DodgeLikeGodGame.WIDTH/2,DodgeLikeGodGame.HEIGHT/2);
+			batch.draw(goodImg, DodgeLikeGodGame.WIDTH/2,DodgeLikeGodGame.HEIGHT/2);
 			goodThingMove = true;
 		}
 		batch.draw(godImg, posgod.x,DodgeLikeGodGame.HEIGHT-posgod.y);
