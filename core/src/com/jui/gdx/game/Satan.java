@@ -20,8 +20,13 @@ public class Satan {
     public void move() { 
     		
     		if(countForSatanSpeed==1){
-    			satanSpeedx = randomSatanSpeed.nextInt(20) -10;
-    			satanSpeedy = randomSatanSpeed.nextInt(20) -10;
+    			while(true) {
+    				satanSpeedx = randomSatanSpeed.nextInt(3) -1;
+    				satanSpeedy = randomSatanSpeed.nextInt(3) -1;
+    				if(satanSpeedx != 0 && satanSpeedy !=0) {
+    					break;
+    				}
+    			}
     			countForSatanSpeed+=1;
     		}
     		position.x += satanSpeedx;

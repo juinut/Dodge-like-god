@@ -4,6 +4,8 @@ public class World {
 	private God god;
 	private Satan satan;
 	private GoodThing goodThing;
+	public int score = 0;
+	public int bestScore = 0;
  
     public World(DodgeLikeGodGame dodgeLikeGodGame) {
         this.god = new God(500,675);
@@ -19,5 +21,11 @@ public class World {
     }
     public GoodThing getGoodThing() {
     		return goodThing;
+    }
+    public int getScore() {
+    		return score;
+    }
+    public int getBestScore() {
+    		return bestScore;
     }
 }

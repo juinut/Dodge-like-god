@@ -20,8 +20,13 @@ public class GoodThing {
     public void move() { 
     		
     		if(countForGoodSpeed==1){
-    			GoodThingSpeedx = randomGoodSpeed.nextInt(20) - 10;
-    			GoodThingSpeedy= randomGoodSpeed.nextInt(20) - 10;
+    			while(true) {
+    				GoodThingSpeedx = randomGoodSpeed.nextInt(3) - 1;
+    				GoodThingSpeedy= randomGoodSpeed.nextInt(3) - 1;
+    				if(GoodThingSpeedx != 0 && GoodThingSpeedy != 0) {
+    					break;
+    				}
+    			}
     			countForGoodSpeed+=1;
     		}
     		position.x += GoodThingSpeedx;
